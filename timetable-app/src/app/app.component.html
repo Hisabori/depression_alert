@@ -1,0 +1,58 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Timetable App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Day</ion-label>
+          <ion-input [(ngModel)]="day"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Start Time</ion-label>
+          <ion-input [(ngModel)]="startTime"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">End Time</ion-label>
+          <ion-input [(ngModel)]="endTime"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Subject</ion-label>
+          <ion-input [(ngModel)]="subject"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="addClass()">Add Class</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let cls of schedule">
+      {{cls.day}} - {{cls.startTime}} to {{cls.endTime}}: {{cls.subject}}
+      <ion-button slot="end" color="danger" (click)="removeClass(cls.subject)">Remove</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

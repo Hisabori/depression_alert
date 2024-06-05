@@ -54,3 +54,4 @@ logging.info("키워드 감시를 시작합니다. 종료하려면 Ctrl+C를 누
 print("키워드 감시를 시작합니다. 종료하려면 Ctrl+C를 누르세요.")
 
 keyboard.wait('esc')
+

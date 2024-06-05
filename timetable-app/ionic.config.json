@@ -1,0 +1,7 @@
+{
+  "name": "timetable-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
