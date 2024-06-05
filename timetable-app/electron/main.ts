@@ -9,13 +9,17 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
-      contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js')
+      contextIsolation: false
     }
   });
 
-  mainWindow.loadFile(path.join(__dirname, 'app', 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, '../www/index.html')).then(() => {
+    console.log("Main window loaded successfully.");
+  }).catch((err) => {
+    console.error("Failed to load main window:", err);
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -23,6 +27,8 @@ function createWindow() {
 }
 
 function createPopup() {
+  // @ts-ignore
+  // @ts-ignore
   popupWindow = new BrowserWindow({
     width: 400,
     height: 300,
@@ -34,7 +40,11 @@ function createPopup() {
     }
   });
 
-  popupWindow.loadFile(path.join(__dirname, 'app', 'popup.html'));
+  popupWindow.loadFile(path.join(__dirname, '../www/popup.html')).then(() => {
+    console.log("Popup window loaded successfully.");
+  }).catch((err) => {
+    console.error("Failed to load popup window:", err);
+  });
 
   popupWindow.on('closed', () => {
     popupWindow = null;
@@ -55,7 +65,6 @@ app.on('activate', () => {
   }
 });
 
-// Listen for the 'open-popup' event from the renderer process
 ipcMain.on('open-popup', () => {
   if (popupWindow === null) {
     createPopup();

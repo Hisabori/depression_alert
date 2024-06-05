@@ -10,6 +10,8 @@
 </ion-header>
 
 <ion-content>
+  <ion-button id="open-popup">Open Popup</ion-button>
+
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -56,3 +58,10 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<script>
+  const { ipcRenderer } = require('electron');
+
+  document.getElementById('open-popup').addEventListener('click', () => {
+    ipcRenderer.send('open-popup');
+  });
+</script>
